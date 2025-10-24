@@ -13,6 +13,8 @@
 		4AB0DA342EAC300F003461EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0DA262EAC300F003461EF /* AppDelegate.swift */; };
 		4AB0DA352EAC300F003461EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0DA292EAC300F003461EF /* SceneDelegate.swift */; };
 		4AB0DA362EAC300F003461EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0DA2E2EAC300F003461EF /* ViewController.swift */; };
+		4AB0DA382EAC30C5003461EF /* BackTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0DA372EAC30C5003461EF /* BackTap.swift */; };
+		4AB0DA3A2EAC30C8003461EF /* CircularBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0DA392EAC30C8003461EF /* CircularBuffer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		4AB0DA2B2EAC300F003461EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AB0DA2C2EAC300F003461EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4AB0DA2E2EAC300F003461EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4AB0DA372EAC30C5003461EF /* BackTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackTap.swift; sourceTree = "<group>"; };
+		4AB0DA392EAC30C8003461EF /* CircularBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularBuffer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 			children = (
 				4AB0DA2D2EAC300F003461EF /* Main.storyboard */,
 				4AB0DA2E2EAC300F003461EF /* ViewController.swift */,
+				4AB0DA372EAC30C5003461EF /* BackTap.swift */,
+				4AB0DA392EAC30C8003461EF /* CircularBuffer.swift */,
 				4AB0DA2A2EAC300F003461EF /* Supporting Files */,
 				4AB0DA2B2EAC300F003461EF /* Info.plist */,
 			);
@@ -151,7 +157,9 @@
 			files = (
 				4AB0DA342EAC300F003461EF /* AppDelegate.swift in Sources */,
 				4AB0DA352EAC300F003461EF /* SceneDelegate.swift in Sources */,
+				4AB0DA382EAC30C5003461EF /* BackTap.swift in Sources */,
 				4AB0DA362EAC300F003461EF /* ViewController.swift in Sources */,
+				4AB0DA3A2EAC30C8003461EF /* CircularBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
