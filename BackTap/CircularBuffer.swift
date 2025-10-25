@@ -51,7 +51,7 @@ struct CircularBuffer<T> {
     }
     
     init(size: Int) {
-        length = size + 1  // size one more than needed
+        length = size + 1  // dimension buffer one more than needed
     }
     
     var count: Int {
