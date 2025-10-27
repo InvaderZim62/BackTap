@@ -16,27 +16,39 @@
 //     |  /  |
 //     |_/___|
 //      z
-//  x = 1: right side down, y = 1: top down, z = 1: face down
+//  x = 1: right side down, y = 1: top down, z = 1: front down
+//
+//  Lesson learned:
+//  - If the accelerometer is sampled too fast (smaller dt), the taps will contain multiple
+//    points near the peak, fooling the logic.  If the accelerometer is sampled too slow
+//    (larger dt), the peak of the tap may be missed, and the tap will not be detected.
 //
 
 import UIKit
 import CoreMotion  // needed for accelerometers
 
 struct Constant {
-    static let threshold = 3.0  // detection threshold (g's/sec)
-    static let separation = 2.0  // required separation of neighboring points (g's/sec)
-    static let dt = 0.02  // accelerometer and filter update rate (sec)
-    static let tau = 0.1  // washout filter time constant (sec)
-    static let isShowPlot = false  // plot of filtered z-accelerations in console
+    static let threshold = 2.0  // detection threshold (g's/sec)
+    static let separation = 1.0  // required separation of neighboring points (g's/sec)
+    static let dt = 0.018  // accelerometer and filter update rate (sec)
+    static let tau = 5 * dt  // washout filter time constant (sec)
+    static let timeOut = 0.5  // max allowable time between multi-taps (sec)
+    static let isShowPlot = true  // plot of filtered z-accelerations in console
 }
 
 class BackTap {
     
-    private var tapDetected: (() -> Void)?
+    var numberOfTapsRequired = 1
+    
+    private var backTapsDetected: (() -> Void)?
     private let motionManager = CMMotionManager()  // needed for accelerometers
     private var circularBuffer = CircularBuffer<Double>(size: 5)
     private var washoutFilterInfo = WashoutFilterInfo()
-    
+    private var startTime = 0.0
+    private var previousTapTime = 0.0
+    private var firstTime = true
+    private var numberOfTapsDetected = 0
+
     struct WashoutFilterInfo {
         var c1 = exp(-Constant.dt / Constant.tau)  // zero-order hold washout filter
         var c2 = 1 / Constant.tau
@@ -45,7 +57,7 @@ class BackTap {
     }
 
     init(action: @escaping () -> Void) {
-        tapDetected = action
+        backTapsDetected = action
         
         // use z-acceleration (perpendicular to screen) to detect back taps
         if motionManager.isAccelerometerAvailable {
@@ -53,6 +65,12 @@ class BackTap {
             motionManager.startAccelerometerUpdates(to: .main) { [self] (data, error) in
                 guard let data else { return }
                 
+                if firstTime {
+                    startTime = data.timestamp
+                    firstTime = false
+                }
+
+                let currentTime = data.timestamp
                 let zAccel = data.acceleration.z
                 let zWashout = self.washoutFilter(input: zAccel, filterInfo: &washoutFilterInfo)
                 
@@ -66,10 +84,18 @@ class BackTap {
                 
                 // wait for buffer to fill before checking for taps
                 if circularBuffer.count >= circularBuffer.length - 1 {
-                    let isTapped = isTapDetected(buffer: buffer, threshold: Constant.threshold, separation: Constant.separation)
-                    if isTapped {
-//                        print(buffer[0], buffer[1], buffer[2], buffer[3], buffer[4])
-                        tapDetected?()
+                    if isTapDetected(buffer: buffer, threshold: Constant.threshold, separation: Constant.separation) {
+                        numberOfTapsDetected += 1
+                        previousTapTime = currentTime
+                        if numberOfTapsDetected == numberOfTapsRequired {
+                            backTapsDetected?()
+                            numberOfTapsDetected = 0
+                        }
+                    } else {
+                        let timeSincePreviousTap = currentTime - previousTapTime  // seconds
+                        if timeSincePreviousTap > Constant.timeOut {
+                            numberOfTapsDetected = 0
+                        }
                     }
                 }
             }

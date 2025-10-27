@@ -40,6 +40,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xnz-cL-2DB"/>
                     <connections>
+                        <outlet property="instructionLabel" destination="yW1-wj-kU0" id="loq-EJ-tBn"/>
                         <outlet property="tapCountLabel" destination="gX6-b9-O9w" id="Sdw-4E-tXo"/>
                     </connections>
                 </viewController>
