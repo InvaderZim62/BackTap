@@ -4,9 +4,9 @@
 //
 //  Created by Phil Stern on 10/24/25.
 //
-//  Store scrolling window of five z-accelerations.  Pass points through a washout filter
+//  Store scrolling window of three z-accelerations.  Pass points through a washout filter
 //  to approximate rate of change of acceleration (jerk).  Detect tap, if middle point
-//  is above threshold, and other four points are sufficiently separated from middle point.
+//  is above threshold, and neighboring points are sufficiently separated from middle point.
 //
 //  Accelerometer output
 //        y
@@ -30,8 +30,8 @@ import CoreMotion  // needed for accelerometers
 struct Constant {
     static let threshold = 2.0  // detection threshold (g's/sec)
     static let separation = 1.0  // required separation of neighboring points (g's/sec)
-    static let dt = 0.018  // accelerometer and filter update rate (sec)
-    static let tau = 5 * dt  // washout filter time constant (sec)
+    static let dt = 0.015  // accelerometer and filter update rate (sec)
+    static let tau = 0.08  // washout filter time constant (sec)
     static let timeOut = 0.5  // max allowable time between multi-taps (sec)
     static let isShowPlot = true  // plot of filtered z-accelerations in console
 }
@@ -42,7 +42,7 @@ class BackTap {
     
     private var backTapsDetected: (() -> Void)?
     private let motionManager = CMMotionManager()  // needed for accelerometers
-    private var circularBuffer = CircularBuffer<Double>(size: 5)
+    private var circularBuffer = CircularBuffer<Double>(size: 3)
     private var washoutFilterInfo = WashoutFilterInfo()
     private var startTime = 0.0
     private var previousTapTime = 0.0
