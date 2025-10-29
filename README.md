@@ -2,7 +2,7 @@
 
 "Back Tap" is a feature in iOS 14+ and iPhone 8+.  It can be use to trigger events on the phone, but is not available in code for app development.
 
-I created this app to demonstrate how you can detect taps on the back iPhone in code using the z-accelerometer.
+I created this app to demonstrate how you can detect taps on the back of an iPhone in code using the z-accelerometer.  During the documentation, I am using a normal tap strength.
 
 Here is a plot of z-acceleration (z-accel) versus time.  I tapped the back of the phone twice with the screen facing up, and twice with the screen facing down.  As you can see, the nominal z-accel is -1 for the screen facing up, and +1 for the screen facing down.
 
@@ -14,7 +14,10 @@ Here is a plot of z-accel and filtered z-accel, while tapping the back twice fac
 
 <img width="500" height="231" alt="Filtered accel plot bigger" src="https://github.com/user-attachments/assets/cbc4f065-bd82-4258-b134-9fe848fd444e" />
 
+## Tap Detection
+
 Taps are detected by looking for filtered points above a threshold, with neighboring points that are at least some separation below the peak point.  I used 2.0 for the peak threshold and 1.5 for the separation requirement.
 
-Here's a plot of the same taps with the threshold detection turned on.
+Here's a plot of the same taps with the threshold detection turned on.  I colored the filtered points green, if a tap is detected.  For the most part, the taps are correctly detected, but the plot shows a false positive near the end of the plot.
 
+<img width="500" height="231" alt="Tap detection plot" src="https://github.com/user-attachments/assets/e2126bfd-1090-4308-9099-ccab11977648" />
