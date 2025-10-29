@@ -6,10 +6,15 @@ I created this app to demonstrate how you can detect taps on the back iPhone in 
 
 Here is a plot of z-acceleration (z-accel) versus time.  I tapped the back of the phone twice with the screen facing up, and twice with the screen facing down.  As you can see, the nominal z-accel is -1 for the screen facing up, and +1 for the screen facing down.
 
-<img width="450" height="208" alt="Accel plot" src="https://github.com/user-attachments/assets/e81cbd40-83a5-481d-98a3-8c7de8e0f047" />
+<img width="500" height="231" alt="Accel plot bigger" src="https://github.com/user-attachments/assets/e234f5d9-96d1-4add-8639-98ba351e40b5" />
 
 In order to get the nominal z-accel to be zero for all orientations, I passed the samples through a washout filter (aka high-pass filter).  The washout filter approximates the rate of change of z-accel.  If the acceleration isn't changing, the output is zero.
 
 Here is a plot of z-accel and filtered z-accel, while tapping the back twice facing up and twice facing down.  The filter amplifies the slightest motion, but keeps the z-accel centered near zero.
 
-<img width="450" height="208" alt="Filtered accel plot" src="https://github.com/user-attachments/assets/3d28648d-e77e-40c1-b5f8-6e5e94dddce1" />
+<img width="500" height="231" alt="Filtered accel plot bigger" src="https://github.com/user-attachments/assets/cbc4f065-bd82-4258-b134-9fe848fd444e" />
+
+Taps are detected by looking for filtered points above a threshold, with neighboring points that are at least some separation below the peak point.  I used 2.0 for the peak threshold and 1.5 for the separation requirement.
+
+Here's a plot of the same taps with the threshold detection turned on.
+
