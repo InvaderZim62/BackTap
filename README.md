@@ -21,3 +21,11 @@ Taps are detected by looking for filtered points above a threshold, with neighbo
 Here's a plot of the same taps with the threshold detection turned on.  I colored the filtered points green, if a tap is detected.  For the most part, the taps are correctly detected, but the plot shows a false positive near the end of the plot.
 
 <img width="500" height="231" alt="Tap detection plot" src="https://github.com/user-attachments/assets/e2126bfd-1090-4308-9099-ccab11977648" />
+
+Here's a plot where I continuously tapped the back of the phone, without flipping the phone over.  It shows very reliable detections.
+
+<img width="500" height="231" alt="Continuous taps" src="https://github.com/user-attachments/assets/452caac7-aa93-4542-87f7-a2d26beeb442" />
+
+Here's a plot where I shook the phone to cause accels near the detection threshold.  It shows no detections.
+
+<img width="500" height="231" alt="Shaking phone" src="https://github.com/user-attachments/assets/617b661a-3abb-4601-9713-3098607d420b" />
