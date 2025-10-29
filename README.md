@@ -1,6 +1,6 @@
 # BackTap
 
-"Back Tap" is a feature in iOS 14+ and iPhone 8+.  It can be use to trigger events on the phone, but is not available in code for app development.
+"Back Tap" is a feature in iOS 14+ and iPhone 8+.  It can be use to trigger events on the iPhone, but is not available in code for app development.
 
 I created this app to demonstrate how you can detect taps on the back of an iPhone in code using the z-accelerometer.  During the documentation, I am using a normal tap strength.
 
@@ -26,6 +26,6 @@ Here's a plot where I continuously tapped the back of the phone, without flippin
 
 <img width="500" height="231" alt="Continuous taps" src="https://github.com/user-attachments/assets/452caac7-aa93-4542-87f7-a2d26beeb442" />
 
-Here's a plot where I shook the phone to cause accels near the detection threshold.  It shows no detections.
+Here's a plot where I shook the phone to cause accels near the detection threshold.  It shows reliable rejections.
 
 <img width="500" height="231" alt="Shaking phone" src="https://github.com/user-attachments/assets/617b661a-3abb-4601-9713-3098607d420b" />
