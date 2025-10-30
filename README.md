@@ -22,10 +22,10 @@ Here's a plot of the same taps with the threshold detection turned on.  I colore
 
 <img width="500" height="231" alt="Tap detection plot" src="https://github.com/user-attachments/assets/e2126bfd-1090-4308-9099-ccab11977648" />
 
-Here's a plot where I continuously tapped the back of the phone, without flipping the phone over.  It shows very reliable detections.
+Here's a plot where I continuously tapped the back of the phone, without flipping the phone over.  It shows reliable detections.
 
 <img width="500" height="231" alt="Continuous taps" src="https://github.com/user-attachments/assets/452caac7-aa93-4542-87f7-a2d26beeb442" />
 
-Here's a plot where I shook the phone to cause accels near the detection threshold.  It shows reliable rejections.
+Here's a plot where I shook the phone to cause accels near the detection threshold.  No taps were made.  No taps were detected (good).
 
 <img width="500" height="231" alt="Shaking phone" src="https://github.com/user-attachments/assets/617b661a-3abb-4601-9713-3098607d420b" />
