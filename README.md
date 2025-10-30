@@ -2,7 +2,7 @@
 
 "Back Tap" is a feature in iOS 14+ and iPhone 8+.  It can be use to trigger events on the iPhone, but is not available in code for app development.
 
-I created this app to demonstrate how you can detect taps on the back of an iPhone in code using the z-accelerometer.  During the documentation, I am using a normal tap strength.
+I created this app to demonstrate how you can detect taps on the back of an iPhone in code using the z-accelerometer.  In the examples below, I am using a normal tap strength.
 
 Here is a plot of z-acceleration (z-accel) versus time.  I tapped the back of the phone twice with the screen facing up, and twice with the screen facing down.  As you can see, the nominal z-accel is -1 for the screen facing up, and +1 for the screen facing down.
 
